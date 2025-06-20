@@ -1,1 +1,132 @@
-...
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Final Screen</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: white;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      color: #333;
+      text-align: center;
+      position: relative;
+      padding-top: 50px;
+      overflow: hidden;
+    }
+
+    .bubble-text {
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.5em;
+      color: #ff69b4;
+      text-shadow:
+        2px 2px 0 #fff,
+        -2px 2px 0 #fff,
+        2px -2px 0 #fff,
+        -2px -2px 0 #fff;
+      user-select: none;
+      margin-bottom: 10px;
+    }
+
+    .sub-message {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      font-size: 3em;
+      color: red;
+      user-select: none;
+      margin-bottom: 30px;
+    }
+
+    .flower-img {
+      width: 300px;
+      max-width: 90%;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      margin-bottom: 30px;
+    }
+
+    .emoji {
+      position: absolute;
+      font-size: 5rem;
+      animation: float 5s infinite;
+      user-select: none;
+    }
+
+    .play-button, .next-button {
+      background-color: #ffb6c1;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1.2em;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+
+    .next-button {
+      margin-top: 10px;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bubble-text">I like u &lt;3</div>
+  <div class="sub-message">flowers for u pookie 🌹</div>
+  <img class="flower-img" src="https://i.pinimg.com/736x/24/0e/92/240e92d853e3dfe45540e4768aa7de1c.jpg" alt="Flowers for you" />
+
+  <button class="play-button" onclick="playMusic()">Play Music</button>
+  <button class="next-button" onclick="goToNextPage()">Next ➡️</button>
+
+  <audio id="background-audio">
+    <source src="https://files.oaiusercontent.com/file-DM8hFnjM5P4YhFcei2hVCk?se=2025-06-20T20%3A11%3A13Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D299%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D9c275a74-4d01-4aa5-b57f-446a550af606.mp3&sig=FpY1ZaPYQc6TmoD0WtnWLOFh%2B/uoRfh6KvTbyvkGMIs%3D" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    const emojis = ['🌹','🌻','🌼','🪻','🌷','🌸','🌻'];
+    const body = document.body;
+
+    function createEmoji() {
+      const emoji = document.createElement('div');
+      emoji.classList.add('emoji');
+      emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+      emoji.style.left = Math.random() * 100 + 'vw';
+      emoji.style.top = '100vh';
+      emoji.style.animationDuration = (Math.random() * 3 + 2) + 's';
+      body.appendChild(emoji);
+
+      setTimeout(() => {
+        emoji.remove();
+      }, 5000);
+    }
+
+    setInterval(createEmoji, 300);
+
+    function playMusic() {
+      const audio = document.getElementById('background-audio');
+      audio.play();
+    }
+
+    function goToNextPage() {
+      window.location.href = "nextpage.html";
+    }
+  </script>
+</body>
+</html>
