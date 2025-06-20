@@ -1,1 +1,222 @@
-...
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Next Surprise</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background-color: #ffb6c1; /* baby pink */
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      color: #880e4f;
+      font-size: 2.5em;
+      position: relative;
+      text-align: center;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .back-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: pink;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 2px 2px 8px rgba(255, 105, 180, 0.7);
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 100;
+    }
+
+    .back-btn:hover {
+      background-color: #ff69b4;
+    }
+
+    .message {
+      margin-bottom: 30px;
+      color: #d32f2f;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 1.2em;
+    }
+
+    .message span {
+      font-size: 1.4em;
+    }
+
+    .big-gift {
+      font-size: 8rem;
+      cursor: pointer;
+      margin-bottom: 40px;
+      transition: transform 0.3s ease;
+      user-select: none;
+    }
+
+    .big-gift:hover {
+      transform: scale(1.1);
+    }
+
+    .gift-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 20px;
+      max-width: 360px;
+      margin: 0 auto 50px;
+    }
+
+    .small-gift {
+      font-size: 3.5rem;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      user-select: none;
+      color: #d32f2f;
+    }
+
+    .small-gift:hover {
+      transform: scale(1.3);
+    }
+
+    #popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 182, 193, 0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    #popup-content {
+      background: white;
+      color: #880e4f;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      font-size: 1.2em;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      max-width: 80%;
+    }
+
+    #popup-content button {
+      margin-top: 20px;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+
+    .next-arrow {
+      margin-top: 20px;
+      font-size: 1.2em;
+      color: #ffffff;
+      background-color: #ffb6c1; /* changed to baby pink */
+      padding: 12px 24px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0px 4px 10px rgba(255, 182, 193, 0.6);
+      transition: background-color 0.3s ease;
+    }
+
+    .next-arrow:hover {
+      background-color: #ff99aa;
+    }
+  </style>
+</head>
+<body>
+  <a href="index.html" class="back-btn">
+    <span style="font-size: 20px;">←</span>
+    Back
+  </a>
+
+  <div class="message">
+    <span>Click on the gift to open!</span> 
+    <span style="font-size: 1.6em;">❤️</span>
+  </div>
+
+  <div class="big-gift" onclick="openGift()" role="button" tabindex="0" aria-label="Open the big gift">
+    🎁
+  </div>
+
+  <div class="gift-grid" role="list" aria-label="Gift boxes with hidden messages">
+    <div class="small-gift" onclick="showMessage(1)">🎁</div>
+    <div class="small-gift" onclick="showMessage(2)">🎁</div>
+    <div class="small-gift" onclick="showMessage(3)">🎁</div>
+    <div class="small-gift" onclick="showMessage(4)">🎁</div>
+    <div class="small-gift" onclick="showMessage(5)">🎁</div>
+    <div class="small-gift" onclick="showMessage(6)">🎁</div>
+    <div class="small-gift" onclick="showMessage(7)">🎁</div>
+    <div class="small-gift" onclick="showMessage(8)">🎁</div>
+    <div class="small-gift" onclick="showMessage(9)">🎁</div>
+    <div class="small-gift" onclick="showMessage(10)">🎁</div>
+    <div class="small-gift" onclick="showMessage(11)">🎁</div>
+    <div class="small-gift" onclick="showMessage(12)">🎁</div>
+  </div>
+
+  <a class="next-arrow" href="babyblue.html">Next →</a>
+
+  <div id="popup">
+    <div id="popup-content">
+      <span id="popup-message"></span>
+      <br>
+      <button onclick="closePopup()">Close</button>
+    </div>
+  </div>
+
+  <script>
+    function openGift() {
+      alert('🎉 Surprise! The big gift is opened! 🎉');
+    }
+
+    const messages = {
+      1: "YOU ARE SUCHA CUTIE!!❤️",
+      2: "KEEP SMILING! 😊",
+      3: "LOTS OF KISSES AND HUGS! 🫂😚",
+      4: "DANCE MORE! 💃🕺🪩",
+      5: "UR EYES ,,THEY PRETTYYYYY! 👀✨",
+      6: "YOU MAKE ME HAPPY! ❤️",
+      7: "I WISH U STAYED CLOSE ! 😭😭",
+      8: "I LOVE HOW U MAKE LAME N CUTE JOKES🧚🏾‍♂️! ",
+      9: "NEVER GIVE UP ! 🤗",
+      10: "STAND UP FOR URSELF , I'M SOO PROUD OF U ! 😊",
+      11: "I J LOVE EVRYTHING BT YA! 🧚🏾‍♂️🧚🏾‍♂️🧚🏾‍♂️😎",
+      12: "ANDDDDD HAPPY FREAKING BIRTHDAY! ❤️"
+    };
+
+    function showMessage(id) {
+      const popup = document.getElementById('popup');
+      const popupMessage = document.getElementById('popup-message');
+      popupMessage.innerText = messages[id];
+      popup.style.display = 'flex';
+    }
+
+    function closePopup() {
+      document.getElementById('popup').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
+
